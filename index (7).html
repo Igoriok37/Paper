@@ -5,345 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Бумагу, пожалуйста — студия упаковки</title>
 <meta name="description" content="Студия упаковки подарков и бумажного творчества. Широкий выбор упаковочных материалов для бизнеса, подарков и переезда.">
-<style>
-  :root{
-    --ink:#1c1c22;
-    --paper:#f4efe4;
-    --blue:#4d72c4;
-    --blue-deep:#2f4a92;
-    --magenta:#d8459a;
-    --yellow:#ecd24e;
-    --green:#92c23e;
-    --dark:#15151b;
-  }
-
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    font-family:'Trebuchet MS','Segoe UI',Verdana,sans-serif;
-    background:var(--dark);
-    color:var(--paper);
-    overflow-x:hidden;
-    cursor:auto;
-  }
-  a{color:inherit;text-decoration:none;}
-  img,svg{display:block;}
-
-  /* ---------- NAV ---------- */
-  header{
-    position:fixed;
-    top:0;left:0;right:0;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:22px 5vw;
-    z-index:100;
-    mix-blend-mode:difference;
-  }
-  .logo{
-    font-weight:800;
-    font-size:18px;
-    letter-spacing:.5px;
-    color:#fff;
-  }
-  nav ul{
-    display:flex;
-    gap:34px;
-    list-style:none;
-    margin:0;padding:0;
-  }
-  nav a{
-    color:#fff;
-    font-size:14px;
-    letter-spacing:1.5px;
-    font-weight:700;
-    text-transform:uppercase;
-    position:relative;
-    padding-bottom:4px;
-  }
-  nav a::after{
-    content:"";
-    position:absolute;left:0;bottom:0;
-    width:0;height:2px;
-    background:currentColor;
-    transition:width .25s ease;
-  }
-  nav a:hover::after{width:100%;}
-  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
-  .burger span{width:26px;height:2px;background:#fff;display:block;}
-
-  @media (max-width:760px){
-    nav ul{
-      position:fixed;top:0;right:0;
-      height:100vh;width:70vw;max-width:300px;
-      background:var(--dark);
-      flex-direction:column;
-      justify-content:center;
-      align-items:flex-start;
-      padding:0 40px;
-      transform:translateX(100%);
-      transition:transform .35s ease;
-      mix-blend-mode:normal;
-    }
-    nav ul.open{transform:translateX(0);}
-    nav a{color:var(--paper);}
-    .burger{display:flex;}
-  }
-
-  /* ---------- SECTION BASE ---------- */
-  section{
-    position:relative;
-    overflow:hidden;
-    padding:140px 6vw 120px;
-  }
-  .deco{
-    position:absolute;
-    pointer-events:none;
-    z-index:0;
-    will-change:transform;
-  }
-  .content{position:relative;z-index:2;}
-
-  .eyebrow{
-    font-size:13px;
-    letter-spacing:3px;
-    text-transform:uppercase;
-    font-weight:700;
-    opacity:.7;
-    margin-bottom:18px;
-  }
-
-  h1,h2{
-    font-weight:800;
-    line-height:.98;
-    margin:0;
-    letter-spacing:-1px;
-    text-transform:uppercase;
-  }
-
-  /* ---------- HERO ---------- */
-  .hero{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    background:var(--dark);
-    padding-top:160px;
-  }
-  .hero h1{
-    font-size:clamp(46px,8vw,108px);
-    color:#fff;
-    max-width:780px;
-  }
-  .hero .sub{
-    margin-top:34px;
-    font-size:clamp(18px,2.4vw,26px);
-    max-width:560px;
-    color:#cfcfd6;
-    font-weight:400;
-  }
-  .hero .cta{
-    display:inline-block;
-    margin-top:46px;
-    background:var(--yellow);
-    color:var(--dark);
-    font-weight:800;
-    letter-spacing:1px;
-    text-transform:uppercase;
-    padding:18px 38px;
-    border-radius:2px;
-    font-size:14px;
-    transition:transform .2s ease, background .2s ease;
-  }
-  .hero .cta:hover{transform:translateY(-3px);background:#fff;}
-
-  /* ---------- ABOUT ---------- */
-  .about{
-    background:var(--paper);
-    color:var(--ink);
-  }
-  .about h2{
-    font-size:clamp(40px,7vw,84px);
-    color:var(--blue-deep);
-  }
-  .about .grid{
-    display:grid;
-    grid-template-columns:1.1fr .9fr;
-    gap:60px;
-    margin-top:60px;
-    align-items:start;
-  }
-  .about p{
-    font-size:19px;
-    line-height:1.6;
-    max-width:520px;
-  }
-  .about .stats{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:28px;
-    margin-top:50px;
-  }
-  .stat-num{
-    font-size:48px;
-    font-weight:800;
-    color:var(--magenta);
-  }
-  .stat-label{
-    font-size:14px;
-    opacity:.75;
-    margin-top:4px;
-  }
-
-  /* ---------- CATALOG ---------- */
-  .catalog{
-    background:var(--blue);
-    color:#fff;
-  }
-  .catalog h2{
-    font-size:clamp(40px,7vw,84px);
-    color:#fff;
-  }
-  .catalog .lead{
-    max-width:540px;
-    font-size:19px;
-    margin-top:24px;
-    color:#e7edff;
-  }
-  .cards{
-    margin-top:64px;
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
-    gap:28px;
-  }
-  .card{
-    background:#fff;
-    color:var(--ink);
-    border-radius:6px;
-    padding:24px 22px 26px;
-    position:relative;
-    transition:transform .28s ease, box-shadow .28s ease;
-    cursor:pointer;
-  }
-  .card:hover{
-    transform:scale(1.045) translateY(-4px);
-    box-shadow:0 22px 40px rgba(0,0,0,.28);
-  }
-  .badge{
-    position:absolute;
-    top:16px;right:16px;
-    font-size:11px;
-    font-weight:800;
-    letter-spacing:.5px;
-    text-transform:uppercase;
-    padding:5px 10px;
-    border-radius:20px;
-    color:#fff;
-  }
-  .badge.hit{background:var(--magenta);}
-  .badge.new{background:var(--green);}
-  .badge.sale{background:var(--blue-deep);}
-  .card-thumb{
-    height:120px;
-    border-radius:4px;
-    margin-bottom:18px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-  .card h3{
-    font-size:18px;
-    margin:0 0 10px;
-    line-height:1.25;
-  }
-  .card p{
-    font-size:14px;
-    line-height:1.5;
-    opacity:.75;
-    margin:0 0 18px;
-    min-height:62px;
-  }
-  .card-foot{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-  }
-  .price{
-    font-weight:800;
-    font-size:16px;
-  }
-  .buy{
-    font-size:12px;
-    font-weight:800;
-    text-transform:uppercase;
-    letter-spacing:.5px;
-    color:var(--blue-deep);
-    border-bottom:2px solid var(--blue-deep);
-    padding-bottom:2px;
-  }
-
-  /* ---------- CONTACTS ---------- */
-  .contacts{
-    background:var(--magenta);
-    color:#fff;
-    min-height:70vh;
-    display:flex;
-    align-items:center;
-  }
-  .contacts h2{
-    font-size:clamp(40px,7vw,90px);
-    color:#fff;
-  }
-  .contacts .grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:60px;
-    margin-top:50px;
-  }
-  .contacts a.big{
-    display:block;
-    font-size:clamp(22px,3vw,34px);
-    font-weight:700;
-    margin-bottom:10px;
-    border-bottom:2px solid rgba(255,255,255,.4);
-    width:fit-content;
-  }
-  .contacts .block{margin-bottom:34px;}
-  .contacts .block-label{
-    font-size:13px;
-    letter-spacing:2px;
-    text-transform:uppercase;
-    opacity:.75;
-    margin-bottom:10px;
-  }
-  .contacts .block p{margin:0;font-size:16px;line-height:1.6;opacity:.95;}
-  .social{display:flex;gap:18px;margin-top:8px;}
-  .social a{
-    font-size:14px;
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:.5px;
-    border-bottom:2px solid rgba(255,255,255,.5);
-  }
-  .placeholder-note{
-    font-size:13px;
-    opacity:.7;
-    margin-top:6px;
-    font-style:italic;
-  }
-
-  footer{
-    background:var(--dark);
-    text-align:center;
-    padding:30px 20px;
-    font-size:13px;
-    color:#7c7c86;
-  }
-
-  @media (max-width:760px){
-    .about .grid,.contacts .grid{grid-template-columns:1fr;}
-    section{padding:110px 6vw 80px;}
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -375,7 +37,13 @@
       <li><a href="#contacts">Контакты</a></li>
     </ul>
   </nav>
-  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+  <div class="nav-right">
+    <button class="cart-btn" id="cartBtn" aria-label="Корзина">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 4h2l1.4 11.2A2 2 0 0 0 8.4 17h8.2a2 2 0 0 0 2-1.7L20 8H6"/><circle cx="9" cy="20" r="1.4" fill="currentColor"/><circle cx="17" cy="20" r="1.4" fill="currentColor"/></svg>
+      <span class="cart-count" id="cartCount" style="display:none;">0</span>
+    </button>
+    <div class="burger" id="burger"><span></span><span></span><span></span></div>
+  </div>
 </header>
 
 <!-- ===================== HERO ===================== -->
@@ -476,68 +144,28 @@
 
 <footer>© 2026 Бумагу, пожалуйста. Студия упаковки подарков и бумажного творчества.</footer>
 
-<script>
-  // ---- Mobile nav ----
-  const burger = document.getElementById('burger');
-  const navList = document.getElementById('navList');
-  burger.addEventListener('click', () => navList.classList.toggle('open'));
-  navList.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navList.classList.remove('open')));
+<!-- ===================== CART DRAWER ===================== -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cart-head">
+    <h3>Корзина</h3>
+    <button class="cart-close" id="cartClose" aria-label="Закрыть">&times;</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty">Корзина пуста</div>
+  </div>
+  <div class="cart-foot">
+    <div class="cart-total-row">
+      <span>Итого</span>
+      <span id="cartTotal">0 ₽</span>
+    </div>
+    <button class="checkout-btn" id="checkoutBtn" disabled>Оформить заказ</button>
+  </div>
+</aside>
 
-  // ---- Product data (from paper-please.tilda.ws) ----
-  const products = [
-    {badge:'hit', badgeText:'Хит', title:'Крафт-бумага рулон', desc:'Натуральный коричневый крафт, плотность 90 г/м², рулон 100 м — универсальная упаковка', price:'580 ₽ / рулон', color:'#cdbb86'},
-    {badge:'', badgeText:'', title:'Цветная упаковочная', desc:'Яркие рулоны 12 оттенков, 50 м каждый — для подарков и подарочной упаковки', price:'1 290 ₽ / набор', color:'#e08fc0'},
-    {badge:'new', badgeText:'Новинка', title:'Папиросная бумага', desc:'Нежная тонкая бумага для деликатной упаковки — 100 листов, мятый белый', price:'340 ₽ / упаковка', color:'#ece6da'},
-    {badge:'', badgeText:'', title:'Пузырчатая плёнка', desc:'Надёжная защита хрупких изделий, рулон 25 м — классический bubble wrap', price:'460 ₽ / рулон', color:'#dce6ea'},
-    {badge:'hit', badgeText:'Хит', title:'Гофрокартон листы', desc:'3-слойный гофрокартон ВС, 10 листов — для перевозок и хранения', price:'890 ₽ / пачка', color:'#c8a06a'},
-    {badge:'', badgeText:'', title:'Бумага для посылок', desc:'Мягкая обёрточная бумага 60 г/м², рулон 50 м — экономичное решение', price:'320 ₽ / рулон', color:'#e3d8c2'},
-    {badge:'sale', badgeText:'−20%', title:'Металлизированная бумага', desc:'Золотая и серебряная фольга, 20 листов А4 — для премиум-упаковки', price:'490 ₽ / набор', color:'#e9d27a'},
-    {badge:'', badgeText:'', title:'Подарочная с узором', desc:'Рулоны с принтами — геометрия, флористика, абстракция, 4 м на рулон', price:'260 ₽ / рулон', color:'#cfe0a8'},
-    {badge:'new', badgeText:'Новинка', title:'Сотовая бумага', desc:'Honeycomb-структура для декоративной и защитной упаковки, рулон 25 м', price:'620 ₽ / рулон', color:'#e7c9a3'},
-    {badge:'', badgeText:'', title:'Вощёная бумага', desc:'Водонепроницаемая, пищевая — для упаковки еды, сэндвичей и фастфуда', price:'380 ₽ / рулон', color:'#f0eadb'},
-    {badge:'sale', badgeText:'−15%', title:'Крепированная бумага', desc:'Креп-бумага для гирлянд, цветов и декора — 50 рулонов, радуга цветов', price:'760 ₽ / набор', color:'#e5b3c9'},
-    {badge:'hit', badgeText:'Хит', title:'Целлофан прозрачный', desc:'Прозрачная плёнка для конфет, букетов и подарков — рулон 50 м', price:'290 ₽ / рулон', color:'#dfeef5'}
-  ];
+<div class="toast" id="toast"></div>
 
-  const grid = document.getElementById('cardsGrid');
-  products.forEach(p => {
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.innerHTML = `
-      ${p.badge ? `<div class="badge ${p.badge}">${p.badgeText}</div>` : ''}
-      <div class="card-thumb" style="background:${p.color}">
-        <svg width="46" height="46" viewBox="0 0 100 100"><use href="#flower" fill="#15151b" opacity="0.18"/></svg>
-      </div>
-      <h3>${p.title}</h3>
-      <p>${p.desc}</p>
-      <div class="card-foot">
-        <span class="price">${p.price}</span>
-        <span class="buy">Купить</span>
-      </div>
-    `;
-    grid.appendChild(card);
-  });
-
-  // ---- Parallax (no rotation, just float on scroll) ----
-  const decos = Array.from(document.querySelectorAll('.deco'));
-  let ticking = false;
-  function updateParallax(){
-    const scrollY = window.scrollY;
-    decos.forEach(el => {
-      const speed = parseFloat(el.dataset.speed) || 0.2;
-      const offset = scrollY * speed;
-      el.style.transform = `translateY(${offset * -0.5}px)`;
-    });
-    ticking = false;
-  }
-  window.addEventListener('scroll', () => {
-    if(!ticking){
-      requestAnimationFrame(updateParallax);
-      ticking = true;
-    }
-  });
-  updateParallax();
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
